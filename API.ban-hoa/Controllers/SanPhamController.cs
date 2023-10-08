@@ -53,58 +53,37 @@ namespace API.ban_hoa.Controllers
             return model;
         }
 
-        //[Route("search")]
-        //[HttpGet]
-        //public IActionResult Search([FromBody] Dictionary<string, object> formData)
-        //{
-        //    try
-        //    {
-        //        var page = int.Parse(formData["page"].ToString());
-        //        var pageSize = int.Parse(formData["pageSize"].ToString());
-        //        int ma_sanpham;
-        //        if (formData.Keys.Contains("ma_sanpham") && !string.IsNullOrEmpty(Convert.ToString(formData["ma_sanpham"])))
-        //        {
-        //            ma_sanpham = Convert.ToInt32(formData["ma_sanpham"]);
-        //        }
+        [Route("search")]
+        [HttpPost]
+        public IActionResult Search([FromBody] Dictionary<string, object> formData)
+        {
+            try
+            {
+                var page = int.Parse(formData["page"].ToString());
+                var pageSize = int.Parse(formData["pageSize"].ToString());
+                string tenSanPham = "";
+                if (formData.Keys.Contains("ten_san_pham") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_san_pham"]))) { tenSanPham = Convert.ToString(formData["ten_san_pham"]); }
+                string moTa = "";
+                if (formData.Keys.Contains("mo_ta") && !string.IsNullOrEmpty(Convert.ToString(formData["mo_ta"]))) { moTa = Convert.ToString(formData["mo_ta"]); }
 
-        //        string ten_sanpham = "";
-        //        if (formData.Keys.Contains("ten_sanpham") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_sanpham"]))) { ten_sanpham = Convert.ToString(formData["ten_sanpham"]); }
+                long total = 0;
+                var data = _sanPhamBusiness.Search(page, pageSize, out total, tenSanPham, moTa);
+                return Ok(
+                    new
+                    {
+                        TotalItems = total,
+                        Data = data,
+                        Page = page,
+                        PageSize = pageSize
+                    }
+                );
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+        }
 
-
-        //        int ma_chuyen_muc;
-        //        if (formData.Keys.Contains("ma_chuyen_muc") && !string.IsNullOrEmpty(Convert.ToString(formData["ma_chuyen_muc"])))
-        //        {
-        //            ma_chuyen_muc = Convert.ToInt32(formData["ma_chuyen_muc"]);
-        //        }
-
-
-        //        bool trang_thai = false;
-        //        if (formData.Keys.Contains("trang_thai"))
-        //        {
-        //            trang_thai = !string.IsNullOrEmpty(Convert.ToString(formData["trang_thai"]));
-        //        }
-
-
-
-        //        long total = 0;
-        //        var data = _sanPhamBusiness.Search(page, pageSize, out total,  ma_sanpham, ten_sanpham, ma_chuyen_muc, trang_thai);
-        //        return Ok(
-        //            new
-        //            {
-        //                TotalItems = total,
-        //                Data = data,
-        //                Page = page,
-        //                PageSize = pageSize,
-
-        //            }
-        //            );
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw new Exception(ex.Message);
-        //    }
-
-        //}
 
     }
 }

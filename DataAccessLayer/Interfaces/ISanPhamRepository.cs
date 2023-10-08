@@ -14,7 +14,6 @@ namespace DataAccessLayer.Interfaces
         bool Create(SanPhamModel model);
         bool Update(SanPhamModel model);
         bool Delete(Delete_SanPham model);
-
-        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total,int ma_sanpham, string ten_sanpham, int ma_chuyen_muc, bool trang_thai);
+        List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tenSanPham, string moTa);
     }
 }

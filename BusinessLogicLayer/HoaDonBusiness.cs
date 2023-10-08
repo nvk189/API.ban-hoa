@@ -36,5 +36,10 @@ namespace BusinessLogicLayer
         {
             return _hoaDon.GetAll();
         }
+
+        public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int maDonHang, string hoTen, string dienThoai, string trangThai, DateTime? ngayDatHang)
+        {
+           return _hoaDon.SearchHoaDon( pageIndex ,pageSize ,out total, maDonHang, hoTen, dienThoai, trangThai , ngayDatHang);
+        }
     }
 }
