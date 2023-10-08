@@ -12,5 +12,6 @@ namespace BusinessLogicLayer.Interfaces
         HoaDonModel GetDatabyID(int id);
         bool Create(HoaDonModel model);
         bool Update(HoaDonModel model);
+        List<HoaDonModel1> GetAll();
     }
 }
