@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 
 namespace BusinessLogicLayer
 {
-    public class HoaDonBusiness:IHoaDonBusiness
+    public class HoaDonBusiness : IHoaDonBusiness
     {
         private IHoaDonReponsitory _hoaDon;
-        public HoaDonBusiness (IHoaDonReponsitory hoaDon)
+        public HoaDonBusiness(IHoaDonReponsitory hoaDon)
         {
             _hoaDon = hoaDon;
         }
@@ -39,7 +39,11 @@ namespace BusinessLogicLayer
 
         public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int maDonHang, string hoTen, string dienThoai, string trangThai, DateTime? ngayDatHang)
         {
-           return _hoaDon.SearchHoaDon( pageIndex ,pageSize ,out total, maDonHang, hoTen, dienThoai, trangThai , ngayDatHang);
+            return _hoaDon.SearchHoaDon(pageIndex, pageSize, out total, maDonHang, hoTen, dienThoai, trangThai, ngayDatHang);
+        }
+
+        public List<HoaDonModel1> SearchHoaDon1(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao){
+            return _hoaDon.SearchHoaDon1(pageIndex, pageSize, out total, fr_NgayTao, to_NgayTao);
         }
     }
 }

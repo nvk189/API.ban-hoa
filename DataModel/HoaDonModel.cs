@@ -38,12 +38,5 @@ namespace DataModel
             public string TrangThai { get; set; }
         }
 
-        public class HoaDon_Search
-        {
-
-            public int pageIndex { get; set; }
-            public int pageSize { get; set; }
-
-        }
 
     }

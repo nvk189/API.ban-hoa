@@ -132,5 +132,30 @@ namespace DataAccessLayer
             }
         }
 
+
+        public List<HoaDonModel1> SearchHoaDon1(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        {
+            string msgError = "";
+            total = 0;
+            try
+            {
+                var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "thongke_hoadon",
+                    "@page_index", pageIndex,
+                    "@page_size", pageSize,
+                    "@fr_NgayTao", fr_NgayTao,
+                    "@to_NgayTao", to_NgayTao
+                );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["TotalRecords"];
+                return dt.ConvertTo<HoaDonModel1>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+
     }
 }

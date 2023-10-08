@@ -106,29 +106,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total,int ma_sanpham, string ten_sanpham, int ma_chuyen_muc, bool trang_thai)
-        {
-            string msgError = "";
-            total = 0;
-            try
-            {
-                var dt = _dbhelper.ExecuteSProcedureReturnDataTable(out msgError, "sanpham_search",
-                    "@page_index", pageIndex,
-                    "@page_size", pageSize,
-                    "@MaSanPham", ma_sanpham,
-                    "@TenSanPham", ten_sanpham,
-                    "@MaChuyenMuc", ma_chuyen_muc,
-                    "@TrangThai", trang_thai);
-                if (!string.IsNullOrEmpty(msgError))
-                    throw new Exception(msgError);
-                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<KhachHangModel>().ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+       
 
         public bool Update(SanPhamModel model)
         {

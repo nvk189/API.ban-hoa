@@ -78,7 +78,7 @@ namespace API.ban_hoa.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                    throw new Exception(ex.Message);
             }
 
         }
