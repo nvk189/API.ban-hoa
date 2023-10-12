@@ -3,6 +3,7 @@ using BusinessLogicLayer.Interfaces;
 using DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using static DataModel.ThongkeModel;
 
 namespace API.ban_hoa.Controllers
 {
@@ -78,7 +79,7 @@ namespace API.ban_hoa.Controllers
             }
         }
 
-        [Route("searchHoaDon")]
+        [Route("ThongKe")]
         [HttpPost]
         public IActionResult SearchHoaDon1([FromBody] Dictionary<string, object> formData)
         {
