@@ -42,7 +42,8 @@ namespace API.ban_hoa.Controllers
             _HoaDonBusiness.Update(model);
             return model;
         }
-        [Route("search-hoadon")]
+       
+        [Route("search")]
         [HttpPost]
         public IActionResult SearchHoaDon([FromBody] Dictionary<string, object> formData)
         {
@@ -50,19 +51,39 @@ namespace API.ban_hoa.Controllers
             {
                 var pageIndex = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
-                int maDonHang = 0;
-                if (formData.Keys.Contains("maDonHang") && !string.IsNullOrEmpty(Convert.ToString(formData["maDonHang"]))) { maDonHang = int.Parse(Convert.ToString(formData["maDonHang"])); }
-                string hoTen = "";
-                if (formData.Keys.Contains("hoTen") && !string.IsNullOrEmpty(Convert.ToString(formData["hoTen"]))) { hoTen = Convert.ToString(formData["hoTen"]); }
+
+                int? maDonHang = null;
+                if (formData.Keys.Contains("ma_don_hang") && !string.IsNullOrEmpty(Convert.ToString(formData["ma_don_hang"])))
+                {
+                    maDonHang = int.Parse(Convert.ToString(formData["ma_don_hang"]));
+                }
+
                 string dienThoai = "";
-                if (formData.Keys.Contains("dienThoai") && !string.IsNullOrEmpty(Convert.ToString(formData["dienThoai"]))) { dienThoai = Convert.ToString(formData["dienThoai"]); }
+                if (formData.Keys.Contains("dien_thoai") && !string.IsNullOrEmpty(Convert.ToString(formData["dien_thoai"])))
+                {
+                    dienThoai = Convert.ToString(formData["dien_thoai"]);
+                }
+
                 string trangThai = "";
-                if (formData.Keys.Contains("trangThai") && !string.IsNullOrEmpty(Convert.ToString(formData["trangThai"]))) { trangThai = Convert.ToString(formData["trangThai"]); }
-                DateTime? ngayDatHang = null;
-                if (formData.Keys.Contains("ngayDatHang") && !string.IsNullOrEmpty(Convert.ToString(formData["ngayDatHang"]))) { ngayDatHang = DateTime.Parse(Convert.ToString(formData["ngayDatHang"])); }
+                if (formData.Keys.Contains("trang_thai") && !string.IsNullOrEmpty(Convert.ToString(formData["trang_thai"])))
+                {
+                    trangThai = Convert.ToString(formData["trang_thai"]);
+                }
+
+                DateTime? ngayDatHangStart = null;
+                if (formData.Keys.Contains("ngay_dat_hang_start") && !string.IsNullOrEmpty(Convert.ToString(formData["ngay_dat_hang_start"])))
+                {
+                    ngayDatHangStart = DateTime.Parse(Convert.ToString(formData["ngay_dat_hang_start"]));
+                }
+
+                DateTime? ngayDatHangEnd = null;
+                if (formData.Keys.Contains("ngay_dat_hang_end") && !string.IsNullOrEmpty(Convert.ToString(formData["ngay_dat_hang_end"])))
+                {
+                    ngayDatHangEnd = DateTime.Parse(Convert.ToString(formData["ngay_dat_hang_end"]));
+                }
 
                 long total = 0;
-                var data = _HoaDonBusiness.SearchHoaDon(pageIndex, pageSize, out total, maDonHang, hoTen, dienThoai, trangThai, ngayDatHang);
+                var data = _HoaDonBusiness.SearchHoaDon(pageIndex, pageSize, out total, maDonHang, dienThoai, trangThai, ngayDatHangStart, ngayDatHangEnd);
                 return Ok(
                     new
                     {
@@ -78,6 +99,7 @@ namespace API.ban_hoa.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
 
         [Route("ThongKe")]
         [HttpPost]

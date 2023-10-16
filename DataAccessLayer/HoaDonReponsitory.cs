@@ -108,7 +108,8 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int maDonHang, string hoTen, string dienThoai, string trangThai, DateTime? ngayDatHang)
+
+        public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, string trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
         {
             string msgError = "";
             total = 0;
@@ -118,10 +119,10 @@ namespace DataAccessLayer
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
                     "@MaDonHang", maDonHang,
-                    "@HoTen", hoTen,
                     "@DienThoai", dienThoai,
                     "@TrangThai", trangThai,
-                    "@NgayDatHang", ngayDatHang);
+                    "@NgayDatHangStart", ngayDatHangStart,
+                    "@NgayDatHangEnd", ngayDatHangEnd);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];

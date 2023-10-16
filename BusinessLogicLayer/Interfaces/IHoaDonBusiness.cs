@@ -14,7 +14,7 @@ namespace BusinessLogicLayer.Interfaces
         bool Create(HoaDonModel model);
         bool Update(HoaDonModel model);
         List<HoaDonModel1> GetAll();
-        List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int maDonHang, string hoTen, string dienThoai, string trangThai, DateTime? ngayDatHang);
+        List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, string trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd);
         List<HoaDonModel1> SearchHoaDon1(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao);
     }
 }

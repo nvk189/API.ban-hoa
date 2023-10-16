@@ -23,8 +23,11 @@ builder.Services.AddTransient<ISanPhamRepository, SanPhamRepository>();
 builder.Services.AddTransient<ISanPhamBusiness, SanPhamBusiness>();
 builder.Services.AddTransient<IHoaDonReponsitory, HoaDonReponsitory>();
 builder.Services.AddTransient<IHoaDonBusiness, HoaDonBusiness>();
+builder.Services.AddTransient<IHoaDonNhapRespository, HoaDonNhapRespository>();
+builder.Services.AddTransient<IHoaDonNhapBusiness, HoaDonNhapBusiness>();
 builder.Services.AddTransient<ITaiKhoanRepository,TaiKhoanRepository>();
 builder.Services.AddTransient<ITaiKhoanBusiness, TaiKhoanBusiness>();
+
 // configure strongly typed settings objects
 IConfiguration configuration = builder.Configuration;
 var appSettingsSection = configuration.GetSection("AppSettings");

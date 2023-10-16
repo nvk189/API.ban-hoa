@@ -11,7 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DataModel", "DataModel\Data
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "API.ban-hoa", "API.ban-hoa\API.ban-hoa.csproj", "{D4764BE2-9858-4242-8622-86D610A63E70}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.User", "API.User\API.User.csproj", "{97DA3691-96D9-4089-B965-AEB3024B3127}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "API.Users", "API.Users\API.Users.csproj", "{CEBF0A05-C7B4-49ED-B073-69622460309C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -35,10 +35,10 @@ Global
 		{D4764BE2-9858-4242-8622-86D610A63E70}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D4764BE2-9858-4242-8622-86D610A63E70}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D4764BE2-9858-4242-8622-86D610A63E70}.Release|Any CPU.Build.0 = Release|Any CPU
-		{97DA3691-96D9-4089-B965-AEB3024B3127}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{97DA3691-96D9-4089-B965-AEB3024B3127}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{97DA3691-96D9-4089-B965-AEB3024B3127}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{97DA3691-96D9-4089-B965-AEB3024B3127}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CEBF0A05-C7B4-49ED-B073-69622460309C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CEBF0A05-C7B4-49ED-B073-69622460309C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CEBF0A05-C7B4-49ED-B073-69622460309C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CEBF0A05-C7B4-49ED-B073-69622460309C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
