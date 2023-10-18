@@ -15,7 +15,7 @@ namespace DataModel
         public DateTime NgayDatHang { get; set; }
         public DateTime NgayGiaoHang { get; set; }
         public decimal TongTien { get; set; }
-        public string TrangThai { get; set; }
+        public bool TrangThai { get; set; }
         public List<ChiTietHoaDonModel> list_json_chitiethoadon { get; set; }
         }
             public class ChiTietHoaDonModel
