@@ -137,7 +137,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tenSanPham, string moTa)
+        public List<SanPhamModel1> Search(int pageIndex, int pageSize, out long total, int maSanPham, string tenSanPham, int maChuyenMuc, bool trangThai)
         {
             string msgError = "";
             total = 0;
@@ -146,12 +146,14 @@ namespace DataAccessLayer
                 var dt = _dbhelper.ExecuteSProcedureReturnDataTable(out msgError, "sanpham_search",
                         "@page_index", pageIndex,
                         "@page_size", pageSize,
+                        "@MaSanPham", maSanPham,
                         "@TenSanPham", tenSanPham,
-                        "@MoTa", moTa);
+                        "@MaChuyenMuc", maChuyenMuc,
+                        "@TrangThai", trangThai);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<SanPhamModel>().ToList();
+                return dt.ConvertTo<SanPhamModel1>().ToList();
             }
             catch (Exception ex)
             {

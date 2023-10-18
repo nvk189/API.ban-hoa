@@ -37,9 +37,9 @@ namespace BusinessLogicLayer
             return _res.GetByID(id);
         }
 
-        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, string tenSanPham, string moTa)
+        public List<SanPhamModel1> Search(int pageIndex, int pageSize, out long total, int maSanPham, string tenSanPham, int maChuyenMuc, bool trangThai)
         {
-            return _res.Search(pageIndex, pageSize, out total, tenSanPham, moTa);
+            return _res.Search(pageIndex, pageSize, out total,  maSanPham, tenSanPham , maChuyenMuc ,trangThai);
         }
 
         public bool Update(SanPhamModel model)
