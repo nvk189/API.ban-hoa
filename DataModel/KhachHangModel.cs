@@ -11,6 +11,7 @@ namespace DataModel
 
         public int MaKhachHang { get; set; }
         public string HoTen { get; set; }
+        public bool GioiTinh { get; set; }
         public string Email { get; set; }
         public string DienThoai { get; set; }
         public string DiaChi { get; set; }
