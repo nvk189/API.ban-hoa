@@ -1,4 +1,5 @@
-﻿using BusinessLogicLayer.Interfaces;
+﻿using BusinessLogicLayer;
+using BusinessLogicLayer.Interfaces;
 using DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -53,8 +54,9 @@ namespace API.ban_hoa.Controllers
             return model;
         }
 
+
         [Route("search")]
-        [HttpPost]
+            [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
         {
             try
@@ -62,12 +64,39 @@ namespace API.ban_hoa.Controllers
                 var page = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
                 string tenSanPham = "";
-                if (formData.Keys.Contains("ten_san_pham") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_san_pham"]))) { tenSanPham = Convert.ToString(formData["ten_san_pham"]); }
-                string moTa = "";
-                if (formData.Keys.Contains("mo_ta") && !string.IsNullOrEmpty(Convert.ToString(formData["mo_ta"]))) { moTa = Convert.ToString(formData["mo_ta"]); }
+                if (formData.Keys.Contains("tenSanPham") && !string.IsNullOrEmpty(Convert.ToString(formData["tenSanPham"])))
+                {
+                    tenSanPham = Convert.ToString(formData["tenSanPham"]);
+                }
+                int maSanPham = 0;
+                if (formData.Keys.Contains("maSanPham") && !string.IsNullOrEmpty(formData["maSanPham"].ToString()))
+                {
+                    if (int.TryParse(formData["maSanPham"].ToString(), out int maSanPhamValue))
+                    {
+                        maSanPham = maSanPhamValue;
+                    }
+                }
+
+                int maChuyenMuc = 0;
+                if (formData.Keys.Contains("maChuyenMuc") && !string.IsNullOrEmpty(formData["maChuyenMuc"].ToString()))
+                {
+                    if (int.TryParse(formData["maChuyenMuc"].ToString(), out int maChuyenMucValue))
+                    {
+                        maChuyenMuc = maChuyenMucValue;
+                    }
+                }
+
+                bool trangThai = true;
+                if (formData.Keys.Contains("trangThai"))
+                {
+                    if (bool.TryParse(formData["trangThai"].ToString(), out bool trangThaiValue))
+                    {
+                        trangThai = trangThaiValue;
+                    }
+                }
 
                 long total = 0;
-                var data = _sanPhamBusiness.Search(page, pageSize, out total, tenSanPham, moTa);
+                var data = _sanPhamBusiness.Search(page, pageSize, out total, maSanPham, tenSanPham, maChuyenMuc, trangThai);
                 return Ok(
                     new
                     {
@@ -80,10 +109,11 @@ namespace API.ban_hoa.Controllers
             }
             catch (Exception ex)
             {
-                throw new Exception(ex.Message);
+                return BadRequest(ex.Message);
             }
         }
 
 
-    }
+
+}
 }
