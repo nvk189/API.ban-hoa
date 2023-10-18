@@ -34,9 +34,9 @@ namespace BusinessLogicLayer
             return _khachHangRepository.GetByID(id);
         }
 
-        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khach, string dia_chi)
+        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khach, string dia_chi, string dien_Thoai, bool gioi_Tinh)
         {
-            return _khachHangRepository.Search(pageIndex, pageSize, out total, ten_khach, dia_chi );
+            return _khachHangRepository.Search(pageIndex, pageSize, out total, ten_khach, dia_chi, dien_Thoai, gioi_Tinh );
         }
 
         public bool Update(KhachHangModel model)

@@ -28,6 +28,7 @@ namespace DataAccessLayer
                 var result = _databaseHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "khachhang_create",
                
                 "@HoTen", model.HoTen,
+                "@GioiTinh", model.GioiTinh,
                 "@Email", model.Email,
                 "@DienThoai", model.DienThoai,
                 "@DiaChi", model.DiaChi);
@@ -81,7 +82,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khach, string dia_chi )
+        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khach, string dia_chi, string dien_Thoai, bool gioi_Tinh)
         {
             string msgError = "";
             total = 0;
@@ -91,7 +92,9 @@ namespace DataAccessLayer
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
                     "@HoTen", ten_khach,
-                    "@DiaChi", dia_chi);
+                    "@DiaChi", dia_chi,
+                    "DienThoai", dien_Thoai,
+                    "GioiTinh", gioi_Tinh);
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
@@ -110,8 +113,8 @@ namespace DataAccessLayer
             {
                 var result = _databaseHelper.ExecuteScalarSProcedureWithTransaction(out msgError, "khachhang_update",
                 "@MaKhachHang", model.MaKhachHang,
-               
                 "@HoTen", model.HoTen,
+                 "@GioiTinh", model.GioiTinh,
                 "@Email", model.Email,
                 "@DienThoai", model.DienThoai,
                 "@DiaChi", model.DiaChi);

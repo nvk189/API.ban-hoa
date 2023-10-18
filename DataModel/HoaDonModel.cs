@@ -33,7 +33,7 @@ namespace DataModel
         //    public string DienThoai { get; set; }
         //    public string DiaChi { get; set; }
         //    public DateTime NgayDatHang { get; set; }
-        //    public DateTime NgayGiaoHang { get; set; }
+        //    public DateTime NgayGiaoHang { get; set; }    
         //    public decimal TongTien { get; set; }
         //    public string TrangThai { get; set; }
         //}

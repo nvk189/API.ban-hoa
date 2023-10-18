@@ -90,6 +90,11 @@ namespace DataAccessLayer
 }
         }
 
+
+        /// <summary>
+        /// / lấy tất cả hóa đơn ngày hôm nay
+        /// </summary>
+        /// <returns></returns>
         public List<HoaDonModel1> GetAll()
         {
             string msgError = "";
@@ -109,7 +114,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, string trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
+        public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, bool trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
         {
             string msgError = "";
             total = 0;
