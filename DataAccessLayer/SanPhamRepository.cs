@@ -48,25 +48,7 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Delete(Delete_SanPham model)
-        {
-            string msgError = "";
-            try
-            {
-                var result = _dbhelper.ExecuteScalarSProcedureWithTransaction(out msgError, "delete_sanpham",
-                "@masp", model.MaSanPham);
-               
-                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
-                {
-                    throw new Exception(Convert.ToString(result) + msgError);
-                }
-                return true;
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
+       
 
         public List<SanPhamModel1> GetAll()
         {
@@ -160,7 +142,43 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        
 
+        public SanPhamModel Delete(int id)
+        {
+            string msgError = "Xóa thành công";
+            try
+            {
+                var dt = _dbhelper.ExecuteSProcedureReturnDataTable(out msgError, "xoa_sanpham",
+                     "@masp", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<SanPhamModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<SanPhamModel1> ThongkeSanPham(int id)
+        {
+            string msgError = "";
+
+            try
+            {
+                var dt = _dbhelper.ExecuteSProcedureReturnDataTable(out msgError, "thongke_SanPham",
+                    "@ChucNang", id
+
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPhamModel1>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

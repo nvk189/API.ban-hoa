@@ -44,8 +44,7 @@ namespace DataModel
         public bool DacBiet { get; set; }
     }
 
-    public class Delete_SanPham
-    {
-        public int MaSanPham { get; set; }
-    }
+   
+
+   
 }

@@ -22,9 +22,9 @@ namespace BusinessLogicLayer
            return _res.Create(model);
         }
 
-        public bool Delete(Delete_SanPham model)
+        public SanPhamModel Delete(int id)
         {
-            return _res.Delete(model);
+            return _res.Delete(id);
         }
 
         public List<SanPhamModel1> GetAll()
@@ -40,6 +40,11 @@ namespace BusinessLogicLayer
         public List<SanPhamModel1> Search(int pageIndex, int pageSize, out long total, int maSanPham, string tenSanPham, int maChuyenMuc, bool trangThai)
         {
             return _res.Search(pageIndex, pageSize, out total,  maSanPham, tenSanPham , maChuyenMuc ,trangThai);
+        }
+
+        public List<SanPhamModel1> ThongKeSanPham(int id)
+        {
+            return _res.ThongkeSanPham(id);
         }
 
         public bool Update(SanPhamModel model)

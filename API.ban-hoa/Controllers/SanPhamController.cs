@@ -21,6 +21,12 @@ namespace API.ban_hoa.Controllers
         {
             return _sanPhamBusiness.GetByID(id);
         }
+        [Route("get-id/ sanphamthongke")]
+        [HttpGet]
+        public List<SanPhamModel1> ThongKeSanPham(int id)
+        {
+            return _sanPhamBusiness.ThongKeSanPham(id);
+        }
         [Route("get-all")]
         [HttpGet]
         public List<SanPhamModel1> GetByAll()
@@ -45,16 +51,14 @@ namespace API.ban_hoa.Controllers
             _sanPhamBusiness.Update(model);
             return model;
         }
-        [Route("Delete")]
-        [HttpPost]
-        public Delete_SanPham Delete([FromBody] Delete_SanPham model)
+
+
+        [Route("delete")]
+        [HttpGet]
+        public SanPhamModel Delete(int id)
         {
-
-            _sanPhamBusiness.Delete(model);
-            return model;
+            return _sanPhamBusiness.Delete(id);
         }
-
-
         [Route("search")]
             [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
@@ -113,7 +117,8 @@ namespace API.ban_hoa.Controllers
             }
         }
 
+       
 
 
-}
+    }
 }
