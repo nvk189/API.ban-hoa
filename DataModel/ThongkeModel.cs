@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace DataModel
 {
-    public  class ThongkeModel
+    public  class ThongKeModel
     {
-
-        /////// thống kê hóa đơn theo ngày
-        public class HoaDonModel1
-        {
+        /// thống kê hóa đơn nhập, hóa đơn bán.
+       
             public int MaDonHang { get; set; }
             public string HoTen { get; set; }
             public string DienThoai { get; set; }
@@ -19,20 +17,11 @@ namespace DataModel
             public DateTime NgayDatHang { get; set; }
             public DateTime NgayGiaoHang { get; set; }
             public decimal TongTien { get; set; }
-            public string TrangThai { get; set; }
-        }
-
-        ////// thống kê hóa đơn nhập
-
-        public class HoaDonNhapModel1
-        {
             public int MaHoaDonNhap { get; set; }
             public int MaNhaCungCap { get; set; }
             public DateTime NgayNhap { get; set; }
-            public decimal TongTien { get; set; }
-            public int MaTaiKhoan { get; set; }
+        
 
-        }
 
     }
 }
