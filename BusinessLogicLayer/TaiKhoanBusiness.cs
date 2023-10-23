@@ -23,6 +23,27 @@ namespace BusinessLogicLayer
             _res = res;
             secret = configuration["AppSettings:Secret"];
         }
+
+        public bool Create(TaiKhoanModel model)
+        {
+            return _res.Create(model);
+        }
+
+        public TaiKhoanModel1 Delete(int id)
+        {
+            return _res.Delete(id);
+        }
+
+        public TaiKhoanModel1 GetId(int id)
+        {
+           return _res.GetId(id);
+        }
+
+        public List<TaiKhoanModel1> GetLoaiTaiKhoan(int loaiTaiKhoan)
+        {
+           return _res.GetLoaiTaiKhoan(loaiTaiKhoan);
+        }
+
         public TaiKhoanModel1 Login(string taikhoan, string matkhau)
         {
             var user = _res.Login(taikhoan, matkhau);
@@ -43,6 +64,11 @@ namespace BusinessLogicLayer
             var token = tokenHandler.CreateToken(tokenDescriptor);
             user.token = tokenHandler.WriteToken(token);
             return user;
+        }
+
+        public bool Update(TaiKhoanModel model)
+        {
+            throw new NotImplementedException();
         }
     }
 }
