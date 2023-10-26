@@ -20,5 +20,10 @@ namespace BusinessLogicLayer
         {
           return _thongKeRespository.ThongKeHoaDon(pageIndex, pageSize, out total ,fr_NgayTao ,to_NgayTao, LoaiThongKe);
         }
+        public List<SanPhamModel1> ThongKeSanPham(int id)
+        {
+            return _thongKeRespository.ThongkeSanPham(id);
+        }
+
     }
 }

@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer;
 using BusinessLogicLayer.Interfaces;
+using DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -59,6 +60,15 @@ namespace API.ban_hoa.Controllers
             {
                 throw new Exception(ex.Message);
             }
+        }
+
+
+        ////////// thống kê sản phẩm bán chạy, nhiều lượt xem ,mới nhập về
+        [Route("get-id/ sanphamthongke")]
+        [HttpGet]
+        public List<SanPhamModel1> ThongKeSanPham(int id)
+        {
+            return _thongKeBusinesscs.ThongKeSanPham(id);
         }
     }
 }

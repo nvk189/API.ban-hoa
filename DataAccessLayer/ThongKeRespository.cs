@@ -42,5 +42,25 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+        public List<SanPhamModel1> ThongkeSanPham(int id)
+        {
+            string msgError = "";
+
+            try
+            {
+                var dt = _databaseHelper.ExecuteSProcedureReturnDataTable(out msgError, "thongke_SanPham",
+                    "@ChucNang", id
+
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPhamModel1>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }
