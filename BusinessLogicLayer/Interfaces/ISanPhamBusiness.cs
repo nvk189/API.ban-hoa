@@ -15,6 +15,7 @@ namespace BusinessLogicLayer.Interfaces
         bool Update (SanPhamModel model);
         SanPhamModel Delete(int id);
         List<SanPhamModel1> Search(int pageIndex, int pageSize, out long total, int maSanPham, string tenSanPham, int maChuyenMuc, bool trangThai);
-        List<SanPhamModel1> ThongKeSanPham(int id);
+        //List<SanPhamModel1> ThongKeSanPham(int id);
+        List<SanPhamModel1> chuyenmuc_sp(int chuyenMuc);
     }
 }

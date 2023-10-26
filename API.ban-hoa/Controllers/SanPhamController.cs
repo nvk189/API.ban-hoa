@@ -21,12 +21,12 @@ namespace API.ban_hoa.Controllers
         {
             return _sanPhamBusiness.GetByID(id);
         }
-        [Route("get-id/ sanphamthongke")]
-        [HttpGet]
-        public List<SanPhamModel1> ThongKeSanPham(int id)
-        {
-            return _sanPhamBusiness.ThongKeSanPham(id);
-        }
+        //[Route("get-id/ sanphamthongke")]
+        //[HttpGet]
+        //public List<SanPhamModel1> ThongKeSanPham(int id)
+        //{
+        //    return _sanPhamBusiness.ThongKeSanPham(id);
+        //}
         [Route("get-all")]
         [HttpGet]
         public List<SanPhamModel1> GetByAll()
@@ -52,7 +52,12 @@ namespace API.ban_hoa.Controllers
             return model;
         }
 
-
+        [Route("get-chuyenmuc")]
+        [HttpGet]
+        public List<SanPhamModel1> chuyenmuc_sp( int chuyenmuc)
+        {
+            return _sanPhamBusiness.chuyenmuc_sp(chuyenmuc);
+        }
         [Route("delete")]
         [HttpGet]
         public SanPhamModel Delete(int id)

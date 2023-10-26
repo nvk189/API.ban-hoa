@@ -17,6 +17,11 @@ namespace BusinessLogicLayer
             _res = res; 
         }
 
+        public List<SanPhamModel1> chuyenmuc_sp(int chuyenMuc)
+        {
+           return _res.chuyenmuc_sp(chuyenMuc);
+        }
+
         public bool Create(SanPhamModel model)
         {
            return _res.Create(model);
@@ -42,10 +47,10 @@ namespace BusinessLogicLayer
             return _res.Search(pageIndex, pageSize, out total,  maSanPham, tenSanPham , maChuyenMuc ,trangThai);
         }
 
-        public List<SanPhamModel1> ThongKeSanPham(int id)
-        {
-            return _res.ThongkeSanPham(id);
-        }
+        //public List<SanPhamModel1> ThongKeSanPham(int id)
+        //{
+        //    return _res.ThongkeSanPham(id);
+        //}
 
         public bool Update(SanPhamModel model)
         {
