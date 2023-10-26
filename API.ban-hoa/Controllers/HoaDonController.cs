@@ -3,7 +3,7 @@ using BusinessLogicLayer.Interfaces;
 using DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using static DataModel.ThongkeModel;
+
 
 namespace API.ban_hoa.Controllers
 {
@@ -43,45 +43,55 @@ namespace API.ban_hoa.Controllers
             return model;
         }
 
-        [Route("tổng tiền theo ngày ")]
-        [HttpPost]
-        public IActionResult SearchHoaDon([FromBody] Dictionary<string, object> formData)
+        [Route("Delete")]
+        [HttpGet]
+        public HoaDonModel Delete(int id)
         {
-            try
-            {
-                var pageIndex = int.Parse(formData["page"].ToString());
-                var pageSize = int.Parse(formData["pageSize"].ToString());
-
-               
-                DateTime? fr_NgayTao = null;
-                if (formData.Keys.Contains("fr_NgayTao") && !string.IsNullOrEmpty(Convert.ToString(formData["fr_NgayTao"])))
-                {
-                    fr_NgayTao = DateTime.Parse(Convert.ToString(formData["fr_NgayTao"]));
-                }
-
-                DateTime? to_NgayTao = null;
-                if (formData.Keys.Contains("to_NgayTao") && !string.IsNullOrEmpty(Convert.ToString(formData["to_NgayTao"])))
-                {
-                    to_NgayTao = DateTime.Parse(Convert.ToString(formData["to_NgayTao"]));
-                }
-
-                long total = 0;
-                var data = _HoaDonBusiness.SearchHoaDon1(pageIndex, pageSize, out total, fr_NgayTao, to_NgayTao);
-                return Ok(
-                    new
-                    {
-                        TotalItems = total,
-                        Data = data,
-                        Page = pageIndex,
-                        PageSize = pageSize
-                    }
-                );
-            }
-            catch (Exception ex)
-            {
-                throw new Exception(ex.Message);
-            }
+            return _HoaDonBusiness.Delete(id);
         }
+
+        //[Route("tổng tiền theo ngày ")]
+        //[HttpPost]
+        //public IActionResult SearchHoaDon([FromBody] Dictionary<string, object> formData)
+        //{
+        //    try
+        //    {
+        //        var pageIndex = int.Parse(formData["page"].ToString());
+        //        var pageSize = int.Parse(formData["pageSize"].ToString());
+
+
+        //        DateTime? fr_NgayTao = null;
+        //        if (formData.Keys.Contains("fr_NgayTao") && formData["fr_NgayTao"] != null && formData["fr_NgayTao"].ToString() != "")
+        //        {
+        //            var dt = Convert.ToDateTime(formData["fr_NgayTao"].ToString());
+        //            fr_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, 0);
+        //        }
+
+
+        //        DateTime? to_NgayTao = null;
+        //        if (formData.Keys.Contains("to_NgayTao") && formData["to_NgayTao"] != null && formData["to_NgayTao"].ToString() != "")
+        //        {
+        //            var dt = Convert.ToDateTime(formData["NgayNhapEnd"].ToString());
+        //            to_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, 0);
+        //        }
+
+        //        long total = 0;
+        //        var data = _HoaDonBusiness.SearchHoaDon1(pageIndex, pageSize, out total, fr_NgayTao, to_NgayTao);
+        //        return Ok(
+        //            new
+        //            {
+        //                TotalItems = total,
+        //                Data = data,
+        //                Page = pageIndex,
+        //                PageSize = pageSize
+        //            }
+        //        );
+        //    }
+        //    catch (Exception ex)
+        //    {
+        //        throw new Exception(ex.Message);
+        //    }
+        //}
 
 
         [Route("Search")]

@@ -8,7 +8,7 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static DataModel.ThongkeModel;
+//using static DataModel.ThongkeModel;
 
 namespace DataAccessLayer
 {
@@ -114,7 +114,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, bool trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
+        public List<HoaDonModel1> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, bool trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
         {
             string msgError = "";
             total = 0;
@@ -131,30 +131,6 @@ namespace DataAccessLayer
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<HoaDonModel>().ToList();
-            }
-            catch (Exception ex)
-            {
-                throw ex;
-            }
-        }
-
-
-        public List<HoaDonModel1> SearchHoaDon1(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao)
-        {
-            string msgError = "";
-            total = 0;
-            try
-            {
-                var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "thongke_hoadon",
-                    "@page_index", pageIndex,
-                    "@page_size", pageSize,
-                    "@fr_NgayTao", fr_NgayTao,
-                    "@to_NgayTao", to_NgayTao
-                );
-                if (!string.IsNullOrEmpty(msgError))
-                    throw new Exception(msgError);
-                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["TotalRecords"];
                 return dt.ConvertTo<HoaDonModel1>().ToList();
             }
             catch (Exception ex)
@@ -163,6 +139,21 @@ namespace DataAccessLayer
             }
         }
 
-
+        public HoaDonModel Delete(int id)
+        {
+            string msgError = "";
+            try
+            {
+                var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "xoa_hoadon",
+                     "@mahd", id);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                return dt.ConvertTo<HoaDonModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
     }
 }

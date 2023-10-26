@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static DataModel.ThongkeModel;
+//using static DataModel.ThongkeModel;
 
 namespace BusinessLogicLayer
 {
@@ -40,14 +40,19 @@ namespace BusinessLogicLayer
 
 
 
-        public List<HoaDonModel1> SearchHoaDon1(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao)
-        {
-            return _hoaDon.SearchHoaDon1(pageIndex, pageSize, out total, fr_NgayTao, to_NgayTao);
-        }
+        //public List<HoaDonModel1> SearchHoaDon1(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        //{
+        //    return _hoaDon.SearchHoaDon1(pageIndex, pageSize, out total, fr_NgayTao, to_NgayTao);
+        //}
 
-        public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, bool trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
+        public List<HoaDonModel1> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, bool trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
         {
             return _hoaDon.SearchHoaDon(pageIndex, pageSize, out total, maDonHang, dienThoai, trangThai, ngayDatHangStart, ngayDatHangEnd);
+        }
+
+        public HoaDonModel Delete(int id)
+        {
+            return _hoaDon.Delete(id);
         }
     }
 }
