@@ -27,7 +27,7 @@ namespace API.ban_hoa.Controllers
         }
         [Route("get-id")]
         [HttpGet]
-        public TaiKhoanModel1 GetByID(int id)
+        public TaiKhoanModel GetByID(int id)
         {
             return _business.GetId(id);
         }
@@ -38,11 +38,19 @@ namespace API.ban_hoa.Controllers
         {
             return _business.GetLoaiTaiKhoan(loaiTaiKhoan);
         }
-        [Route("Delete")]
-        [HttpGet]
-        public TaiKhoanModel1 delete(int id)
+        [Route("update-admin")]
+        [HttpPost]
+        public TaiKhoanModel Update([FromBody] TaiKhoanModel model)
         {
-            return _business.Delete(id);
+
+            _business.Update_admin(model);
+            return model;
         }
+        //[Route("Delete")]
+        //[HttpGet]
+        //public TaiKhoanModel1 delete(int id)
+        //{
+        //    return _business.Delete(id);
+        //}
     }
 }

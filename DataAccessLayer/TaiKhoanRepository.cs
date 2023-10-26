@@ -58,7 +58,7 @@ namespace DataAccessLayer
             }
         }
 
-        public TaiKhoanModel1 GetId(int id)
+        public TaiKhoanModel GetId(int id)
         {
             string msgError = "";
             try
@@ -68,7 +68,7 @@ namespace DataAccessLayer
                      );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                return dt.ConvertTo<TaiKhoanModel1>().FirstOrDefault();
+                return dt.ConvertTo<TaiKhoanModel>().FirstOrDefault();
             }
             catch (Exception ex)
             {
@@ -116,9 +116,28 @@ namespace DataAccessLayer
             }
         }
 
-        public bool Update(TaiKhoanModel model)
+        public bool Update_admin(TaiKhoanModel model)
         {
-            throw new NotImplementedException();
+            string msgError = "";
+            try
+            {
+                var result = _database.ExecuteScalarSProcedureWithTransaction(out msgError, "update_tk_admin",
+                    "@maTaiKhoan", model.MaTaiKhoan,
+                    "@TrangThai", model.TrangThai,
+                    "@MaLoaiTK", model.MaLoaiTaiKhoan);
+
+
+
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
         }
     }
 }

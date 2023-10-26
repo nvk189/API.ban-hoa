@@ -34,7 +34,7 @@ namespace BusinessLogicLayer
             return _res.Delete(id);
         }
 
-        public TaiKhoanModel1 GetId(int id)
+        public TaiKhoanModel GetId(int id)
         {
            return _res.GetId(id);
         }
@@ -66,9 +66,9 @@ namespace BusinessLogicLayer
             return user;
         }
 
-        public bool Update(TaiKhoanModel model)
+        public bool Update_admin(TaiKhoanModel model)
         {
-            throw new NotImplementedException();
+            return _res.Update_admin(model);
         }
     }
 }
