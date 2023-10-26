@@ -37,28 +37,52 @@ namespace API.ban_hoa.Controllers
             return model;
         }
 
-        [Route("ThongKeNhap")]
+        [Route("SearchHoaDonNhap")]
         [HttpPost]
-        public IActionResult ThongKeHoaDonNhap([FromBody] Dictionary<string, object> formData)
+        public IActionResult SearchHoaDonNhap([FromBody] Dictionary<string, object> formData)
         {
             try
             {
                 var page = int.Parse(formData["page"].ToString());
                 var pageSize = int.Parse(formData["pageSize"].ToString());
-                DateTime? fr_NgayTao = null;
-                if (formData.Keys.Contains("fr_NgayNhap") && formData["fr_NgayNhap"] != null && formData["fr_NgayNhap"].ToString() != "")
+                int maHoaDonNhap = 0;
+                if (formData.Keys.Contains("maHoaDonNhap") && !string.IsNullOrEmpty(formData["maHoaDonNhap"].ToString()))
                 {
-                    var dt = Convert.ToDateTime(formData["fr_NgayNhap"].ToString());
-                    fr_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, 0);
+                    if (int.TryParse(formData["maHoaDonNhap"].ToString(), out int maHoaDonNhapValue))
+                    {
+                        maHoaDonNhap = maHoaDonNhapValue;
+                    }
                 }
-                DateTime? to_NgayTao = null;
-                if (formData.Keys.Contains("to_NgayNhap") && formData["to_NgayNhap"] != null && formData["to_NgayNhap"].ToString() != "")
+                int maNhaCungCap = 0;
+                if (formData.Keys.Contains("maNhaCungCap") && !string.IsNullOrEmpty(formData["maNhaCungCap"].ToString()))
                 {
-                    var dt = Convert.ToDateTime(formData["to_NgayNhap"].ToString());
-                    to_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59, 999);
+                    if (int.TryParse(formData["maNhaCungCap"].ToString(), out int maNhaCungCapValue))
+                    {
+                        maNhaCungCap = maNhaCungCapValue;
+                    }
+                }
+                DateTime? ngayNhapStart = null;
+                if (formData.Keys.Contains("ngayNhapStart") && formData["ngayNhapStart"] != null && formData["ngayNhapStart"].ToString() != "")
+                {
+                    var dt = Convert.ToDateTime(formData["ngayNhapStart"].ToString());
+                    ngayNhapStart = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, 0);
+                }
+                DateTime? ngayNhapEnd = null;
+                if (formData.Keys.Contains("ngayNhapEnd") && formData["ngayNhapEnd"] != null && formData["ngayNhapEnd"].ToString() != "")
+                {
+                    var dt = Convert.ToDateTime(formData["ngayNhapEnd"].ToString());
+                    ngayNhapEnd = new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59, 999);
+                }
+                int maTaiKhoan = 0;
+                if (formData.Keys.Contains("maTaiKhoan") && !string.IsNullOrEmpty(formData["maTaiKhoan"].ToString()))
+                {
+                    if (int.TryParse(formData["maTaiKhoan"].ToString(), out int maTaiKhoanValue))
+                    {
+                        maTaiKhoan = maTaiKhoanValue;
+                    }
                 }
                 long total = 0;
-                var data = _nhapBusiness.thongkeHoaDonnhap(page, pageSize, out total, fr_NgayTao, to_NgayTao);
+                var data = _nhapBusiness.SearchHoaDonNhap(page, pageSize, out total, maHoaDonNhap, maNhaCungCap, ngayNhapStart, ngayNhapEnd, maTaiKhoan);
                 return Ok(
                     new
                     {
@@ -74,6 +98,7 @@ namespace API.ban_hoa.Controllers
                 throw new Exception(ex.Message);
             }
         }
+
 
     }
 }

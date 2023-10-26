@@ -25,5 +25,17 @@ namespace DataModel
         public decimal GiaNhap { get; set; }
     }
 
-   
+
+    public class HoaDonNhapModel1
+    {
+        public int MaHoaDonNhap { get; set; }
+        public int MaNhaCungCap { get; set; }
+        public DateTime NgayNhap { get; set; }
+        public decimal TongTien { get; set; }
+        public int MaTaiKhoan { get; set; }
+
+    }
+
+
+
 }

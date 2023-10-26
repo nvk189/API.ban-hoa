@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static DataModel.ThongkeModel;
+//using static DataModel.ThongkeModel;
 
 namespace DataAccessLayer
 {
@@ -60,30 +60,37 @@ namespace DataAccessLayer
             }
         }
 
-  
 
-        public List<HoaDonNhapModel1> thongkeHoaDonnhap(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao)
+
+        public List<HoaDonNhapModel> SearchHoaDonNhap(int pageIndex, int pageSize, out long total, int? maHoaDonNhap, int? maNhaCungCap, DateTime? ngayNhapStart, DateTime? ngayNhapEnd, int? maTaiKhoan)
         {
             string msgError = "";
             total = 0;
             try
             {
-                var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "ThongKeHoaDonNhap",
+                var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "Search_hoadonnhap",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@fr_NgayNhap", fr_NgayTao,
-                    "@to_NgayNhap", to_NgayTao
-                );
+                    "@MaHoaDonNhap", maHoaDonNhap,
+                    "@MaNhaCungCap", maNhaCungCap,
+                    "@NgayNhapStart", ngayNhapStart,
+                    "@NgayNhapEnd", ngayNhapEnd,
+                    "@MaTaiKhoan", maTaiKhoan);
+
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
-                if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["TotalRecords"];
-                return dt.ConvertTo<HoaDonNhapModel1>().ToList();
+
+                if (dt.Rows.Count > 0)
+                    total = (long)dt.Rows[0]["RecordCount"];
+
+                return dt.ConvertTo<HoaDonNhapModel>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
         }
+
 
         public bool Update(HoaDonNhapModel model)
         {

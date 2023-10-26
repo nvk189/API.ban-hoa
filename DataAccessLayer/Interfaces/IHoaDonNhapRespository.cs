@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using static DataModel.ThongkeModel;
+
 
 namespace DataAccessLayer.Interfaces
 {
@@ -14,6 +14,6 @@ namespace DataAccessLayer.Interfaces
         HoaDonNhapModel GetDatabyID(int id);
         bool Create(HoaDonNhapModel model);
         bool Update(HoaDonNhapModel model);
-        List<ThongkeModel.HoaDonNhapModel1> thongkeHoaDonnhap(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao);
+        List<HoaDonNhapModel> SearchHoaDonNhap(int pageIndex, int pageSize, out long total, int? maHoaDonNhap, int? maNhaCungCap, DateTime? ngayNhapStart, DateTime? ngayNhapEnd, int? maTaiKhoan);
     }
 }

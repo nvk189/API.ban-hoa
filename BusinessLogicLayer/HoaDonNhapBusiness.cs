@@ -27,15 +27,10 @@ namespace BusinessLogicLayer
            return _respository.GetDatabyID(id);
         }
 
-        public List<ThongkeModel.HoaDonNhapModel1> thongkeHoaDonnhap(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        public List<HoaDonNhapModel> SearchHoaDonNhap(int pageIndex, int pageSize, out long total, int? maHoaDonNhap, int? maNhaCungCap, DateTime? ngayNhapStart, DateTime? ngayNhapEnd, int? maTaiKhoan)
         {
-           return _respository.thongkeHoaDonnhap( pageIndex, pageSize, out total, fr_NgayTao, to_NgayTao );
+            return _respository.SearchHoaDonNhap(pageIndex, pageSize, out total, maHoaDonNhap, maNhaCungCap, ngayNhapStart, ngayNhapEnd, maTaiKhoan);
         }
-
-        //public List<HoaDonNhapModel1> thongkeHoaDonnhap(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao)
-        //{
-        //    throw new NotImplementedException();
-        //}
 
         public bool Update(HoaDonNhapModel model)
         {
