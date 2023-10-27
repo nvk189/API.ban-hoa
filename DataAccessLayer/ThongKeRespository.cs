@@ -18,6 +18,27 @@ namespace DataAccessLayer
             _databaseHelper = databaseHelper;
         }
 
+        public List<SanPhamModel1> Thongkedoanhthu(DateTime fr_NgayTao, DateTime to_NgayTao)
+        {
+            string msgError = "";
+           
+            try
+            {
+                var dt = _databaseHelper.ExecuteSProcedureReturnDataTable(out msgError, "thongke",
+                        "@fr_NgayTao", fr_NgayTao,
+                        "@To_NgayTao", to_NgayTao
+                      );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<SanPhamModel1>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public List<ThongKeModel> ThongKeHoaDon(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao, int LoaiThongKe)
         {
             string msgError = "";
@@ -49,7 +70,7 @@ namespace DataAccessLayer
             try
             {
                 var dt = _databaseHelper.ExecuteSProcedureReturnDataTable(out msgError, "thongke_SanPham",
-                    "@ChucNang", id
+                    "@RequestType", id
 
                      );
                 if (!string.IsNullOrEmpty(msgError))

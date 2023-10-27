@@ -16,6 +16,12 @@ namespace BusinessLogicLayer
         {
             _thongKeRespository = thongKeRespository;
         }
+
+        public List<SanPhamModel1> Thongkedoanhthu(DateTime fr_NgayTao, DateTime to_NgayTao)
+        {
+            return _thongKeRespository.Thongkedoanhthu (fr_NgayTao, to_NgayTao);
+        }
+
         public List<ThongKeModel> ThongKeHoaDon(int pageIndex, int pageSize, out long total, DateTime? fr_NgayTao, DateTime? to_NgayTao, int LoaiThongKe)
         {
           return _thongKeRespository.ThongKeHoaDon(pageIndex, pageSize, out total ,fr_NgayTao ,to_NgayTao, LoaiThongKe);
