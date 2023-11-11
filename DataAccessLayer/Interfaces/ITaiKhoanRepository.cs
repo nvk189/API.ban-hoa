@@ -15,6 +15,7 @@ namespace DataAccessLayer.Interfaces
         TaiKhoanModel1 Delete(int id);
         TaiKhoanModel GetId (int id);
         List<TaiKhoanModel1> GetLoaiTaiKhoan(int loaiTaiKhoan);
+        List<TaiKhoanModel> GetAll();
 
     }
 }

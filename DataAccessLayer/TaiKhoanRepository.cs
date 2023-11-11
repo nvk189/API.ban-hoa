@@ -58,6 +58,26 @@ namespace DataAccessLayer
             }
         }
 
+        public List<TaiKhoanModel> GetAll()
+        {
+            string msgError = "";
+
+            try
+            {
+                var dt = _database.ExecuteSProcedureReturnDataTable(out msgError, "GetAll"
+
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<TaiKhoanModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public TaiKhoanModel GetId(int id)
         {
             string msgError = "";

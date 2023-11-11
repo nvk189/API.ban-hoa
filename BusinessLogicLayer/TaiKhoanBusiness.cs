@@ -34,6 +34,11 @@ namespace BusinessLogicLayer
             return _res.Delete(id);
         }
 
+        public List<TaiKhoanModel> GetAll()
+        {
+            return _res.GetAll();
+        }
+
         public TaiKhoanModel GetId(int id)
         {
            return _res.GetId(id);

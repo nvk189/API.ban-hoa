@@ -17,13 +17,19 @@ namespace API.ban_hoa.Controllers
             _business = business;   
         }
         [AllowAnonymous]
+        [Route("get-all")]
+        [HttpGet]
+        public List<TaiKhoanModel> GetByAll()
+        {
+            return _business.GetAll();
+        }
         [HttpPost("login")]
         public IActionResult Login([FromBody] AuthenticateModel model)
         {
             var user = _business.Login(model.Username, model.Password);
             if (user == null)
                 return BadRequest(new { message = "Tài khoản hoặc mật khẩu không đúng!" });
-            return Ok(new { taikhoan = user.TenDangNhap, email = user.MatKhau, token = user.token });
+            return Ok(new { taikhoan = user.TenDangNhap, email = user.MatKhau, maloaitk = user.MaLoaiTaiKhoan, token = user.token });
         }
         [Route("get-id")]
         [HttpGet]
@@ -32,7 +38,7 @@ namespace API.ban_hoa.Controllers
             return _business.GetId(id);
         }
 
-        [Route("get-loai_tai_khoan")]
+        [Route("get-loai_tai_khoan/{loaiTaiKhoan}")]
         [HttpGet]
         public List<TaiKhoanModel1> Get_Loai_Tk(int loaiTaiKhoan)
         {
