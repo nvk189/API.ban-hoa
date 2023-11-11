@@ -61,15 +61,15 @@ namespace API.ban_hoa.Controllers
                 var pageSize = int.Parse(formData["pageSize"].ToString());
                 string ten_khach = "";
                 if (formData.Keys.Contains("ten_khach") && !string.IsNullOrEmpty(Convert.ToString(formData["ten_khach"]))) { ten_khach = Convert.ToString(formData["ten_khach"]); }
-                string dia_chi = "";
-                if (formData.Keys.Contains("dia_chi") && !string.IsNullOrEmpty(Convert.ToString(formData["dia_chi"]))) { dia_chi = Convert.ToString(formData["dia_chi"]); }
-                string dien_Thoai = "";
-                if (formData.Keys.Contains("dien_Thoai") && !string.IsNullOrEmpty(Convert.ToString(formData["dien_Thoai"]))) { dia_chi = Convert.ToString(formData["dien_Thoai"]); }
-                bool gioi_Tinh = true;
-                if (formData.Keys.Contains("gioi_Tinh") && !string.IsNullOrEmpty(Convert.ToString(formData["gioi_Tinh"]))) { dia_chi = Convert.ToString(formData["gioi_Tinh"]); }
+                //string dia_chi = "";
+                //if (formData.Keys.Contains("dia_chi") && !string.IsNullOrEmpty(Convert.ToString(formData["dia_chi"]))) { dia_chi = Convert.ToString(formData["dia_chi"]); }
+                //string dien_Thoai = "";
+                //if (formData.Keys.Contains("dien_Thoai") && !string.IsNullOrEmpty(Convert.ToString(formData["dien_Thoai"]))) { dia_chi = Convert.ToString(formData["dien_Thoai"]); }
+                //bool gioi_Tinh = true;
+                //if (formData.Keys.Contains("gioi_Tinh") && !string.IsNullOrEmpty(Convert.ToString(formData["gioi_Tinh"]))) { dia_chi = Convert.ToString(formData["gioi_Tinh"]); }
                 
                 long total = 0;
-                var data = _res.Search(page, pageSize, out total, ten_khach, dia_chi, dien_Thoai, gioi_Tinh);
+                var data = _res.Search(page, pageSize, out total, ten_khach);
                 return Ok(
                     new
                     {

@@ -82,7 +82,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khach, string dia_chi, string dien_Thoai, bool gioi_Tinh)
+        public List<KhachHangModel> Search(int pageIndex, int pageSize, out long total, string ten_khach)
         {
             string msgError = "";
             total = 0;
@@ -91,10 +91,11 @@ namespace DataAccessLayer
                 var dt = _databaseHelper.ExecuteSProcedureReturnDataTable(out msgError, "khachhang_search",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@HoTen", ten_khach,
-                    "@DiaChi", dia_chi,
-                    "DienThoai", dien_Thoai,
-                    "GioiTinh", gioi_Tinh);
+                    "@Search", ten_khach
+                    //"@DiaChi", dia_chi,
+                    //"DienThoai", dien_Thoai,
+                    //"GioiTinh", gioi_Tinh
+                    );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
