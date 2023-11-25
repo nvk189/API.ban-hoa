@@ -50,7 +50,7 @@ namespace DataAccessLayer
 
        
 
-        public List<SanPhamModel1> GetAll()
+        public List<SanPhamModel> GetAll()
         {
 
             string msgError = "";
@@ -63,7 +63,7 @@ namespace DataAccessLayer
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<SanPhamModel1>().ToList();
+                return dt.ConvertTo<SanPhamModel>().ToList();
             }
             catch (Exception ex)
             {
@@ -119,7 +119,7 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
-        public List<SanPhamModel1> Search(int pageIndex, int pageSize, out long total, int maSanPham, string tenSanPham, int maChuyenMuc, bool trangThai)
+        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, int maSanPham, string tenSanPham, int maChuyenMuc, bool trangThai)
         {
             string msgError = "";
             total = 0;
@@ -135,7 +135,7 @@ namespace DataAccessLayer
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<SanPhamModel1>().ToList();
+                return dt.ConvertTo<SanPhamModel>().ToList();
             }
             catch (Exception ex)
             {
@@ -181,25 +181,6 @@ namespace DataAccessLayer
             }
         }
 
-        //public List<SanPhamModel1> ThongkeSanPham(int id)
-        //{
-        //    string msgError = "";
-
-        //    try
-        //    {
-        //        var dt = _dbhelper.ExecuteSProcedureReturnDataTable(out msgError, "thongke_SanPham",
-        //            "@ChucNang", id
-
-        //             );
-        //        if (!string.IsNullOrEmpty(msgError))
-        //            throw new Exception(msgError);
-        //        //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-        //        return dt.ConvertTo<SanPhamModel1>().ToList();
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        throw ex;
-        //    }
-        //}
+       
     }
 }

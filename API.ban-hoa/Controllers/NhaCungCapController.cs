@@ -54,15 +54,15 @@ namespace API.ban_hoa.Controllers
                 var pageSize = int.Parse(formData["pageSize"].ToString());
                 string tenNhaCungCap = "";
                 if (formData.Keys.Contains("tenNhaCungCap") && !string.IsNullOrEmpty(Convert.ToString(formData["tenNhaCungCap"]))) { tenNhaCungCap = Convert.ToString(formData["tenNhaCungCap"]); }
-                string diaChi = "";
-                if (formData.Keys.Contains("diaChi") && !string.IsNullOrEmpty(Convert.ToString(formData["diaChi"]))) { diaChi = Convert.ToString(formData["diaChi"]); }
-                string dienThoai = "";
-                if (formData.Keys.Contains("dienThoai") && !string.IsNullOrEmpty(Convert.ToString(formData["dienThoai"]))) { dienThoai = Convert.ToString(formData["dienThoai"]); }
-                string email = "";
-                if (formData.Keys.Contains("email") && !string.IsNullOrEmpty(Convert.ToString(formData["email"]))) { email = Convert.ToString(formData["email"]); }
+                //string diaChi = "";
+                //if (formData.Keys.Contains("diaChi") && !string.IsNullOrEmpty(Convert.ToString(formData["diaChi"]))) { diaChi = Convert.ToString(formData["diaChi"]); }
+                //string dienThoai = "";
+                //if (formData.Keys.Contains("dienThoai") && !string.IsNullOrEmpty(Convert.ToString(formData["dienThoai"]))) { dienThoai = Convert.ToString(formData["dienThoai"]); }
+                //string email = "";
+                //if (formData.Keys.Contains("email") && !string.IsNullOrEmpty(Convert.ToString(formData["email"]))) { email = Convert.ToString(formData["email"]); }
 
                 long total = 0;
-                var data =_nhaCungCap.SearchNhaCungCap(page, pageSize, out total, tenNhaCungCap, diaChi, dienThoai, email);
+                var data =_nhaCungCap.SearchNhaCungCap(page, pageSize, out total, tenNhaCungCap);
                 return Ok(
                     new
                     {

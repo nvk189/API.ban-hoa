@@ -96,7 +96,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<TaiKhoanModel1> GetLoaiTaiKhoan(int loaiTaiKhoan)
+        public List<TaiKhoanModel> GetLoaiTaiKhoan(int loaiTaiKhoan)
         {
             string msgError = "";
 
@@ -109,7 +109,7 @@ namespace DataAccessLayer
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<TaiKhoanModel1>().ToList();
+                return dt.ConvertTo<TaiKhoanModel>().ToList();
             }
             catch (Exception ex)
             {

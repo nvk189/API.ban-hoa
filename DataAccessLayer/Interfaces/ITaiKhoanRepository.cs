@@ -14,7 +14,7 @@ namespace DataAccessLayer.Interfaces
         bool Update_admin(TaiKhoanModel model);
         TaiKhoanModel1 Delete(int id);
         TaiKhoanModel GetId (int id);
-        List<TaiKhoanModel1> GetLoaiTaiKhoan(int loaiTaiKhoan);
+        List<TaiKhoanModel> GetLoaiTaiKhoan(int loaiTaiKhoan);
         List<TaiKhoanModel> GetAll();
 
     }

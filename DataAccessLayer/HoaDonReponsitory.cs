@@ -8,7 +8,6 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-//using static DataModel.ThongkeModel;
 
 namespace DataAccessLayer
 {
@@ -34,6 +33,7 @@ namespace DataAccessLayer
                 "@TongTien", model.TongTien,
                 "@TrangThai", model.TrangThai,
                 "@list_json_chitiethoadon", model.list_json_chitiethoadon != null ? MessageConvert.SerializeObject(model.list_json_chitiethoadon) : null);
+               
                 if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
                 {
                     throw new Exception(Convert.ToString(result) + msgError);
@@ -95,7 +95,7 @@ namespace DataAccessLayer
         /// / lấy tất cả hóa đơn ngày hôm nay
         /// </summary>
         /// <returns></returns>
-        public List<HoaDonModel1> GetAll()
+        public List<HoaDonModel> GetAll()
         {
             string msgError = "";
 
@@ -106,7 +106,7 @@ namespace DataAccessLayer
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
 
-                return dt.ConvertTo<HoaDonModel1>().ToList();
+                return dt.ConvertTo<HoaDonModel>().ToList();
             }
             catch (Exception ex)
             {

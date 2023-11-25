@@ -10,6 +10,7 @@ namespace BusinessLogicLayer.Interfaces
 {
     public partial interface IHoaDonNhapBusiness
     {
+        List<HoaDonNhapModel> GetAll();
         HoaDonNhapModel GetDatabyID(int id);
         bool Create(HoaDonNhapModel model);
         bool Update(HoaDonNhapModel model);

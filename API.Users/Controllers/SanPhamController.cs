@@ -1,66 +1,21 @@
 ﻿using BusinessLogicLayer;
 using BusinessLogicLayer.Interfaces;
-using DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
-namespace API.ban_hoa.Controllers
+namespace API.Users.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
     public class SanPhamController : ControllerBase
     {
-        private ISanPhamBusiness _sanPhamBusiness;
-        public SanPhamController (ISanPhamBusiness sanPhamBusiness)
+        private ISanPhamBusiness _business;
+        public SanPhamController (ISanPhamBusiness business)
         {
-            _sanPhamBusiness = sanPhamBusiness;
-        }
-        [Route("get-id/{id}")]
-        [HttpGet]
-        public SanPhamModel GetByID(int id)
-        {
-            return _sanPhamBusiness.GetByID(id);
-        }
-        
-        [Route("get-all")]
-        [HttpGet]
-        public List<SanPhamModel> GetByAll()
-        {
-            return _sanPhamBusiness.GetAll();
-        }
-
-        [Route("create")]
-        [HttpPost]
-        public SanPhamModel CreateItem([FromBody] SanPhamModel model)
-        {
-            
-            _sanPhamBusiness.Create(model);
-                return model;
-        }
-
-        [Route("update")]
-        [HttpPost]
-        public SanPhamModel Update([FromBody] SanPhamModel model)
-        {
-
-            _sanPhamBusiness.Update(model);
-            return model;
-        }
-
-        [Route("get-chuyenmuc")]
-        [HttpGet]
-        public List<SanPhamModel1> chuyenmuc_sp( int chuyenmuc)
-        {
-            return _sanPhamBusiness.chuyenmuc_sp(chuyenmuc);
-        }
-        [Route("delete")]
-        [HttpGet]
-        public SanPhamModel Delete(int id)
-        {
-            return _sanPhamBusiness.Delete(id);
+            _business = business;
         }
         [Route("search")]
-            [HttpPost]
+        [HttpPost]
         public IActionResult Search([FromBody] Dictionary<string, object> formData)
         {
             try
@@ -100,7 +55,7 @@ namespace API.ban_hoa.Controllers
                 }
 
                 long total = 0;
-                var data = _sanPhamBusiness.Search(page, pageSize, out total, maSanPham, tenSanPham, maChuyenMuc, trangThai);
+                var data = _business.Search(page, pageSize, out total, maSanPham, tenSanPham, maChuyenMuc, trangThai);
                 return Ok(
                     new
                     {
@@ -116,9 +71,6 @@ namespace API.ban_hoa.Controllers
                 return BadRequest(ex.Message);
             }
         }
-
-       
-
 
     }
 }

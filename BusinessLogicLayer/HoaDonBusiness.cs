@@ -33,7 +33,7 @@ namespace BusinessLogicLayer
             return _hoaDon.Update(model);
         }
 
-        public List<HoaDonModel1> GetAll()
+        public List<HoaDonModel> GetAll()
         {
             return _hoaDon.GetAll();
         }

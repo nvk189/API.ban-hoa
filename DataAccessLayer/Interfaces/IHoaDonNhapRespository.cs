@@ -10,7 +10,7 @@ namespace DataAccessLayer.Interfaces
 {
     public partial interface IHoaDonNhapRespository
     {
-
+        List<HoaDonNhapModel> GetAll();
         HoaDonNhapModel GetDatabyID(int id);
         bool Create(HoaDonNhapModel model);
         bool Update(HoaDonNhapModel model);

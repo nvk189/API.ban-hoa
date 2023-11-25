@@ -58,12 +58,32 @@ namespace DataAccessLayer
             }
         }
 
+        public List<ChuyenMucModel> Search(string tenchuyenmuc)
+        {
+            string msgError = "";
+          
+            try
+            {
+                var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "search_chuyenmuc",
+                    "@TenChuyenMuc", tenchuyenmuc);
+                   
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<ChuyenMucModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public bool Update(ChuyenMucModel model)
         {
             string msgError = "";
             try
             {
-                var result = _helper.ExecuteScalarSProcedureWithTransaction(out msgError, "create_chuyenmuc",
+                var result = _helper.ExecuteScalarSProcedureWithTransaction(out msgError, "update_chuyenmuc",
                 "@MaChuyenMuc", model.MaChuyenMuc,
                "@TenChuyenMuc", model.TenChuyenMuc);
 

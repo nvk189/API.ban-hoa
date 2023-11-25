@@ -40,7 +40,7 @@ namespace API.ban_hoa.Controllers
 
         [Route("get-loai_tai_khoan/{loaiTaiKhoan}")]
         [HttpGet]
-        public List<TaiKhoanModel1> Get_Loai_Tk(int loaiTaiKhoan)
+        public List<TaiKhoanModel> Get_Loai_Tk(int loaiTaiKhoan)
         {
             return _business.GetLoaiTaiKhoan(loaiTaiKhoan);
         }

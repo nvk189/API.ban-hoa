@@ -33,9 +33,9 @@ namespace BusinessLogicLayer
             return _respository.GetByID(id);
         }
 
-        public List<NhaCungCapModel> SearchNhaCungCap(int pageIndex, int pageSize, out long total, string tenNhaCungCap, string diaChi, string dienThoai, string email)
+        public List<NhaCungCapModel> SearchNhaCungCap(int pageIndex, int pageSize, out long total, string tenNhaCungCap)
         {
-            return _respository.SearchNhaCungCap(pageIndex ,pageSize ,out total ,tenNhaCungCap , diaChi ,dienThoai ,email);
+            return _respository.SearchNhaCungCap(pageIndex ,pageSize ,out total ,tenNhaCungCap );
         }
 
         public bool Update(NhaCungCapModel model)

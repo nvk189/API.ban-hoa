@@ -18,11 +18,11 @@ namespace API.ban_hoa.Controllers
         }
         [Route("get-all")]
         [HttpGet]
-        public List<HoaDonModel1> GetAll()
+        public List<HoaDonModel> GetAll()
         {
             return _HoaDonBusiness.GetAll();
         }
-        [Route("get-by-id")]
+        [Route("get-by-id/{id}")]
         [HttpGet]
         public HoaDonModel GetById (int id)
         {

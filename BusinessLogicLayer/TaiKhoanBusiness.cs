@@ -44,7 +44,7 @@ namespace BusinessLogicLayer
            return _res.GetId(id);
         }
 
-        public List<TaiKhoanModel1> GetLoaiTaiKhoan(int loaiTaiKhoan)
+        public List<TaiKhoanModel> GetLoaiTaiKhoan(int loaiTaiKhoan)
         {
            return _res.GetLoaiTaiKhoan(loaiTaiKhoan);
         }
@@ -62,6 +62,7 @@ namespace BusinessLogicLayer
                 {
                     new Claim(ClaimTypes.Name, user.TenDangNhap.ToString()),
                     new Claim(ClaimTypes.Email, user.MatKhau)
+
                 }),
                 Expires = DateTime.UtcNow.AddDays(7),
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.Aes128CbcHmacSha256)

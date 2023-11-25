@@ -12,5 +12,6 @@ namespace BusinessLogicLayer.Interfaces
         List<ChuyenMucModel> getAll();
         bool Create(ChuyenMucModel model);
         bool Update(ChuyenMucModel model);
+        List<ChuyenMucModel> Search(string tenchuyenmuc);
     }
 }

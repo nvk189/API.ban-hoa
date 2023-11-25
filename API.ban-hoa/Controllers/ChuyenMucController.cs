@@ -35,6 +35,12 @@ namespace API.ban_hoa.Controllers
             _chuyenMucBusiness.Update(model);
             return model;
         }
+        [Route("search/{tenchuyenmuc}")]
+        [HttpGet]
+        public List<ChuyenMucModel> Search(string tenchuyenmuc)
+        {
+            return _chuyenMucBusiness.Search(tenchuyenmuc);
+        }
 
     }
 }

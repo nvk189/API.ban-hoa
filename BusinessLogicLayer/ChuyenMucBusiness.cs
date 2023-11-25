@@ -27,6 +27,11 @@ namespace BusinessLogicLayer
             return _respository.getAll();
         }
 
+        public List<ChuyenMucModel> Search(string tenchuyenmuc)
+        {
+           return _respository.Search(tenchuyenmuc);
+        }
+
         public bool Update(ChuyenMucModel model)
         {
            return _respository.Update(model);

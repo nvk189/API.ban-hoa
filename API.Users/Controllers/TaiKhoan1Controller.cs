@@ -17,15 +17,22 @@ namespace API.Users.Controllers
             _business = business;
         }
         [AllowAnonymous]
+        //[HttpPost("login")]
+        //public IActionResult Login([FromBody] AuthenticateModel model)
+        //{
+        //    var user = _business.Login(model.Username, model.Password);
+        //    if (user == null)
+        //        return BadRequest(new { message = "Tài khoản hoặc mật khẩu không đúng!" });
+        //    return Ok(new { taikhoan = user.TenDangNhap, email = user.MatKhau, token = user.token });
+        //}
         [HttpPost("login")]
         public IActionResult Login([FromBody] AuthenticateModel model)
         {
             var user = _business.Login(model.Username, model.Password);
             if (user == null)
                 return BadRequest(new { message = "Tài khoản hoặc mật khẩu không đúng!" });
-            return Ok(new { taikhoan = user.TenDangNhap, email = user.MatKhau, token = user.token });
+            return Ok(new { taikhoan = user.TenDangNhap, email = user.MatKhau, maloaitk = user.MaLoaiTaiKhoan, chitiet = user.list_json_chitiettaikhoan, token = user.token });
         }
-
         [Route("create")]
         [HttpPost]
         public TaiKhoanModel CreateItem([FromBody] TaiKhoanModel model)

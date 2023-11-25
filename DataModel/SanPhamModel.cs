@@ -42,6 +42,7 @@ namespace DataModel
         public bool TrangThai { get; set; }
         public int LuotXem { get; set; }
         public bool DacBiet { get; set; }
+        public decimal DoanhThu { get; set; }
     }
 
    

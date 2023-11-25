@@ -16,7 +16,13 @@ namespace API.ban_hoa.Controllers
             _nhapBusiness = nhapBusiness;
         }
 
-        [Route("get-by-id")]
+        [Route("get-all")]
+        [HttpGet]
+        public List<HoaDonNhapModel> GetByAll()
+        {
+            return _nhapBusiness.GetAll();
+        }
+        [Route("get-by-id/{id}")]
         [HttpGet]
         public HoaDonNhapModel GetById(int id)
         {

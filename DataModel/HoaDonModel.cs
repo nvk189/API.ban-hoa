@@ -18,7 +18,7 @@ namespace DataModel
         public bool TrangThai { get; set; }
         public List<ChiTietHoaDonModel> list_json_chitiethoadon { get; set; }
         }
-            public class ChiTietHoaDonModel
+        public class ChiTietHoaDonModel
             {
             public int MaChiTietDonHang { get; set; }
             public int MaDonHang { get; set; }

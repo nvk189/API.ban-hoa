@@ -22,6 +22,11 @@ namespace BusinessLogicLayer
             return _respository.Create(model);
         }
 
+        public List<HoaDonNhapModel> GetAll()
+        {
+            return _respository.GetAll();
+        }
+
         public HoaDonNhapModel GetDatabyID(int id)
         {
            return _respository.GetDatabyID(id);

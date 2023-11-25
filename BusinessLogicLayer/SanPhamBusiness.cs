@@ -32,7 +32,7 @@ namespace BusinessLogicLayer
             return _res.Delete(id);
         }
 
-        public List<SanPhamModel1> GetAll()
+        public List<SanPhamModel> GetAll()
         {
             return _res.GetAll();   
         }
@@ -42,7 +42,7 @@ namespace BusinessLogicLayer
             return _res.GetByID(id);
         }
 
-        public List<SanPhamModel1> Search(int pageIndex, int pageSize, out long total, int maSanPham, string tenSanPham, int maChuyenMuc, bool trangThai)
+        public List<SanPhamModel> Search(int pageIndex, int pageSize, out long total, int maSanPham, string tenSanPham, int maChuyenMuc, bool trangThai)
         {
             return _res.Search(pageIndex, pageSize, out total,  maSanPham, tenSanPham , maChuyenMuc ,trangThai);
         }

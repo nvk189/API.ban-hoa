@@ -34,6 +34,7 @@ namespace DataModel
         public int MaLoaiTaiKhoan { get; set; }
         public bool TrangThai { get; set; }
         public string token { get; set; }
+        public List<ChiTietTaiKhoanModel> list_json_chitiettaikhoan { get; set; }
     }
 
 }

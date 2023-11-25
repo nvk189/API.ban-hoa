@@ -43,6 +43,26 @@ namespace DataAccessLayer
             }
         }
 
+        public List<HoaDonNhapModel> GetAll()
+        {
+            string msgError = "";
+
+            try
+            {
+                var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "GetAllNhap"
+
+                     );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<HoaDonNhapModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
         public HoaDonNhapModel GetDatabyID(int id)
         {
             string msgError = "";

@@ -102,7 +102,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<NhaCungCapModel> SearchNhaCungCap(int pageIndex, int pageSize, out long total, string tenNhaCungCap, string diaChi, string dienThoai, string email)
+        public List<NhaCungCapModel> SearchNhaCungCap(int pageIndex, int pageSize, out long total, string tenNhaCungCap)
         {
             string msgError = "";
             total = 0;
@@ -111,10 +111,11 @@ namespace DataAccessLayer
                 var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "nhacungcap_search",
                     "@page_index", pageIndex,
                     "@page_size", pageSize,
-                    "@TenNhaCungCap", tenNhaCungCap,
-                    "@DiaChi", diaChi,
-                    "@DienThoai", dienThoai,
-                    "@Email", email);
+                    "@TenNhaCungCap", tenNhaCungCap
+                    //"@DiaChi", diaChi,
+                    //"@DienThoai", dienThoai,
+                    //"@Email", email
+                    );
 
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
