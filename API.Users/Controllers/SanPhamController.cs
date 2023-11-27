@@ -1,5 +1,6 @@
 ﻿using BusinessLogicLayer;
 using BusinessLogicLayer.Interfaces;
+using DataModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -13,6 +14,18 @@ namespace API.Users.Controllers
         public SanPhamController (ISanPhamBusiness business)
         {
             _business = business;
+        }
+        [Route("get-id/{id}")]
+        [HttpGet]
+        public SanPhamModel GetByID(int id)
+        {
+            return _business.GetByID(id);
+        }
+        [Route("get-chuyenmuc")]
+        [HttpGet]
+        public List<SanPhamModel1> chuyenmuc_sp(int chuyenmuc)
+        {
+            return _business.chuyenmuc_sp(chuyenmuc);
         }
         [Route("search")]
         [HttpPost]
