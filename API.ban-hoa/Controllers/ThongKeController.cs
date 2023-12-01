@@ -106,5 +106,75 @@ namespace API.ban_hoa.Controllers
                 return BadRequest(ex.Message);
             }
         }
+
+        // thống kê hóa đơn bán
+        [Route("thống kê hóa đơn bán")]
+        [HttpPost]
+        public IActionResult TKHoaDonBan([FromBody] Dictionary<string, object> formData)
+        {
+            try
+            {
+                DateTime? fr_NgayTao = null;
+                if (formData.Keys.Contains("fr_NgayTao") && formData["fr_NgayTao"] != null && formData["fr_NgayTao"].ToString() != "")
+                {
+                    var dt = Convert.ToDateTime(formData["fr_NgayTao"].ToString());
+                    fr_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, 0);
+                }
+                DateTime? to_NgayTao = null;
+                if (formData.Keys.Contains("to_NgayTao") && formData["to_NgayTao"] != null && formData["to_NgayTao"].ToString() != "")
+                {
+                    var dt = Convert.ToDateTime(formData["to_NgayTao"].ToString());
+                    to_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59, 999);
+                }
+                var data = _thongKeBusinesscs.ThongkeHoaDonBan((DateTime)fr_NgayTao, (DateTime)to_NgayTao);
+                return Ok(
+                    new
+                    {
+
+                        Data = data,
+                        Fr_NgayTao = fr_NgayTao,
+                        to_NgayTao = to_NgayTao
+                    }
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
+        [Route("thống kê hóa đơn nhập")]
+        [HttpPost]
+        public IActionResult TKHoaDonBanNhap([FromBody] Dictionary<string, object> formData)
+        {
+            try
+            {
+                DateTime? fr_NgayTao = null;
+                if (formData.Keys.Contains("fr_NgayTao") && formData["fr_NgayTao"] != null && formData["fr_NgayTao"].ToString() != "")
+                {
+                    var dt = Convert.ToDateTime(formData["fr_NgayTao"].ToString());
+                    fr_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, 0);
+                }
+                DateTime? to_NgayTao = null;
+                if (formData.Keys.Contains("to_NgayTao") && formData["to_NgayTao"] != null && formData["to_NgayTao"].ToString() != "")
+                {
+                    var dt = Convert.ToDateTime(formData["to_NgayTao"].ToString());
+                    to_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59, 999);
+                }
+                var data = _thongKeBusinesscs.ThongkeHoaDonNhap((DateTime)fr_NgayTao, (DateTime)to_NgayTao);
+                return Ok(
+                    new
+                    {
+
+                        Data = data,
+                        Fr_NgayTao = fr_NgayTao,
+                        to_NgayTao = to_NgayTao
+                    }
+                );
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
+        }
     }
 }

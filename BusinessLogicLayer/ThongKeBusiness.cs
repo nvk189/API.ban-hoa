@@ -26,6 +26,16 @@ namespace BusinessLogicLayer
         {
           return _thongKeRespository.ThongKeHoaDon(pageIndex, pageSize, out total ,fr_NgayTao ,to_NgayTao, LoaiThongKe);
         }
+
+        public List<HoaDonModel> ThongkeHoaDonBan(DateTime fr_NgayTao, DateTime to_NgayTao)
+        {
+            return _thongKeRespository.ThongkeHoaDonBan(fr_NgayTao, to_NgayTao);
+        }
+        public List<HoaDonNhapModel> ThongkeHoaDonNhap(DateTime fr_NgayTao, DateTime to_NgayTao)
+        {
+            return _thongKeRespository.ThongkeHoaDonNhap(fr_NgayTao, to_NgayTao);
+        }
+
         public List<SanPhamModel1> ThongKeSanPham(int id)
         {
             return _thongKeRespository.ThongkeSanPham(id);

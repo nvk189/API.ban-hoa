@@ -63,6 +63,49 @@ namespace DataAccessLayer
                 throw ex;
             }
         }
+
+      
+
+        public List<HoaDonModel> ThongkeHoaDonBan(DateTime fr_NgayTao, DateTime to_NgayTao)
+        {
+            string msgError = "";
+
+            try
+            {
+                var dt = _databaseHelper.ExecuteSProcedureReturnDataTable(out msgError, "hoadon_search2",
+                        "@fr_NgayTao", fr_NgayTao,
+                        "@to_NgayTao", to_NgayTao
+                      );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<HoaDonModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+        public List<HoaDonNhapModel> ThongkeHoaDonNhap(DateTime fr_NgayTao, DateTime to_NgayTao)
+        {
+            string msgError = "";
+
+            try
+            {
+                var dt = _databaseHelper.ExecuteSProcedureReturnDataTable(out msgError, "hoadonnhap_search2",
+                        "@fr_NgayTao", fr_NgayTao,
+                        "@to_NgayTao", to_NgayTao
+                      );
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+                //if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
+                return dt.ConvertTo<HoaDonNhapModel>().ToList();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
         public List<SanPhamModel1> ThongkeSanPham(int id)
         {
             string msgError = "";
