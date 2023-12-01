@@ -41,7 +41,22 @@ namespace API.Users.Controllers
             _business.Create(model);
             return model;
         }
+        [Route("update_user_pass")]
+        [HttpPost]
+        public TaiKhoanModel UpdateItem([FromBody] TaiKhoanModel model)
+        {
 
+            _business.Update_tk_user(model);
+            return model;
+        }
+        [Route("update_user")]
+        [HttpPost]
+        public ChiTietTaiKhoanModel UpdateItemPass([FromBody] ChiTietTaiKhoanModel model)
+        {
+
+            _business.Update_pass_user(model);
+            return model;
+        }
         [Route("Hủy tài khoản")]
         [HttpGet]
         public TaiKhoanModel1 delete(int id)

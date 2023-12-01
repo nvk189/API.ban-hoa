@@ -16,6 +16,8 @@ namespace DataAccessLayer.Interfaces
         TaiKhoanModel GetId (int id);
         List<TaiKhoanModel> GetLoaiTaiKhoan(int loaiTaiKhoan);
         List<TaiKhoanModel> GetAll();
+        bool Update_tk_user(TaiKhoanModel model);
+        bool Update_pass_user(ChiTietTaiKhoanModel model);
 
     }
 }

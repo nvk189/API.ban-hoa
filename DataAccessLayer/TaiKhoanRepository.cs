@@ -10,12 +10,12 @@ using System.Threading.Tasks;
 
 namespace DataAccessLayer
 {
-    public class TaiKhoanRepository:ITaiKhoanRepository
+    public class TaiKhoanRepository : ITaiKhoanRepository
     {
         private IDatabaseHelper _database;
-        public TaiKhoanRepository (IDatabaseHelper database)
+        public TaiKhoanRepository(IDatabaseHelper database)
         {
-            _database = database;   
+            _database = database;
         }
 
         public bool Create(TaiKhoanModel model)
@@ -84,7 +84,7 @@ namespace DataAccessLayer
             try
             {
                 var dt = _database.ExecuteSProcedureReturnDataTable(out msgError, "get_id_taikhoan",
-                    "@id",id
+                    "@id", id
                      );
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
@@ -103,7 +103,7 @@ namespace DataAccessLayer
             try
             {
                 var dt = _database.ExecuteSProcedureReturnDataTable(out msgError, "get_loaiTK",
-                    "@loaiTk" ,loaiTaiKhoan
+                    "@loaiTk", loaiTaiKhoan
 
                      );
                 if (!string.IsNullOrEmpty(msgError))
@@ -145,6 +145,55 @@ namespace DataAccessLayer
                     "@maTaiKhoan", model.MaTaiKhoan,
                     "@TrangThai", model.TrangThai,
                     "@MaLoaiTK", model.MaLoaiTaiKhoan);
+
+
+
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Update_pass_user(ChiTietTaiKhoanModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _database.ExecuteScalarSProcedureWithTransaction(out msgError, "update_tk_user",
+                    "@maLoaiTK", model.MaChiTietTaiKhoan,
+                    "@hoten", model.HoTen,
+                    "@email", model.Email,
+                    "@dienthoai", model.DienThoai,
+                    "@diachi", model.DiaChi);
+
+
+
+                if ((result != null && !string.IsNullOrEmpty(result.ToString())) || !string.IsNullOrEmpty(msgError))
+                {
+                    throw new Exception(Convert.ToString(result) + msgError);
+                }
+                return true;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public bool Update_tk_user(TaiKhoanModel model)
+        {
+            string msgError = "";
+            try
+            {
+                var result = _database.ExecuteScalarSProcedureWithTransaction(out msgError, "update_tk_user_pass",
+                    "@maTK", model.MaTaiKhoan,
+                    "@matkhau", model.MatKhau);
 
 
 

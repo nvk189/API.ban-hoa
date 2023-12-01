@@ -76,5 +76,15 @@ namespace BusinessLogicLayer
         {
             return _res.Update_admin(model);
         }
+
+        public bool Update_pass_user(ChiTietTaiKhoanModel model)
+        {
+            return _res.Update_pass_user(model);
+        }
+
+        public bool Update_tk_user(TaiKhoanModel model)
+        {
+            return _res.Update_tk_user(model);
+        }
     }
 }
