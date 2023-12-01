@@ -22,5 +22,11 @@ namespace API.Users.Controllers
             _hoaDonBusiness.Create(model);
             return model;
         }
+        [Route("Delete")]
+        [HttpGet]
+        public HoaDonModel Delete(int id)
+        {
+            return _hoaDonBusiness.Delete(id);
+        }
     }
 }

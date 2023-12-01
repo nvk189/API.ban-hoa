@@ -22,6 +22,12 @@ namespace API.ban_hoa.Controllers
         {
             return _HoaDonBusiness.GetAll();
         }
+        //[Route("get-search")]
+        //[HttpPost]
+        //public List<HoaDonModel> Getsearch(DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        //{
+        //    return _HoaDonBusiness.SearchHoaDon1(fr_NgayTao, to_NgayTao);
+        //}
         [Route("get-by-id/{id}")]
         [HttpGet]
         public HoaDonModel GetById (int id)
@@ -153,6 +159,40 @@ namespace API.ban_hoa.Controllers
             }
         }
 
+        [Route("GetSearch")]
+        [HttpPost]
+        public IActionResult GetSearch([FromBody] Dictionary<string, object> formData)
+        {
+            try
+            {
+                DateTime? fr_NgayTao = null;
+                if (formData.Keys.Contains("fr_NgayTao") && formData["fr_NgayTao"] != null && formData["fr_NgayTao"].ToString() != "")
+                {
+                    var dt = Convert.ToDateTime(formData["fr_NgayTao"].ToString());
+                    fr_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 0, 0, 0, 0);
+                }
+                DateTime? to_NgayTao = null;
+                if (formData.Keys.Contains("to_NgayTao") && formData["to_NgayTao"] != null && formData["to_NgayTao"].ToString() != "")
+                {
+                    var dt = Convert.ToDateTime(formData["to_NgayTao"].ToString());
+                    to_NgayTao = new DateTime(dt.Year, dt.Month, dt.Day, 23, 59, 59, 999);
+                }
+
+                var result = _HoaDonBusiness.SearchHoaDon1(fr_NgayTao, to_NgayTao);
+                // Xử lý kết quả từ _HoaDonBusiness.SearchHoaDon1 ở đây
+                // Ví dụ:
+                // return Ok(result);
+                // hoặc
+                // return new { Data = result };
+
+                // Thêm lệnh return để trả về kết quả hoặc giá trị phù hợp
+                return Ok(result); // hoặc trả về giá trị mong muốn
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message); // Trả về lỗi nếu có exception
+            }
+        }
 
     }
 }

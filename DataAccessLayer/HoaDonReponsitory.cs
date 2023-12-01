@@ -114,7 +114,7 @@ namespace DataAccessLayer
             }
         }
 
-        public List<HoaDonModel1> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, bool trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
+        public List<HoaDonModel> SearchHoaDon(int pageIndex, int pageSize, out long total, int? maDonHang, string dienThoai, bool trangThai, DateTime? ngayDatHangStart, DateTime? ngayDatHangEnd)
         {
             string msgError = "";
             total = 0;
@@ -131,12 +131,14 @@ namespace DataAccessLayer
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 if (dt.Rows.Count > 0) total = (long)dt.Rows[0]["RecordCount"];
-                return dt.ConvertTo<HoaDonModel1>().ToList();
+                return dt.ConvertTo<HoaDonModel>().ToList();
             }
             catch (Exception ex)
             {
                 throw ex;
             }
+
+
         }
 
         public HoaDonModel Delete(int id)
@@ -149,6 +151,27 @@ namespace DataAccessLayer
                 if (!string.IsNullOrEmpty(msgError))
                     throw new Exception(msgError);
                 return dt.ConvertTo<HoaDonModel>().FirstOrDefault();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+        }
+
+        public List<HoaDonModel> SearchHoaDon1(DateTime? fr_NgayTao, DateTime? to_NgayTao)
+        {
+            string msgError = "";
+           
+            try
+            {
+                var dt = _helper.ExecuteSProcedureReturnDataTable(out msgError, "HoaDon_GetDate",
+
+                    "@NgayDatHangStart", fr_NgayTao,
+                    "@NgayDatHangEnd", to_NgayTao);
+                if (!string.IsNullOrEmpty(msgError))
+                    throw new Exception(msgError);
+             
+                return dt.ConvertTo<HoaDonModel>().ToList();
             }
             catch (Exception ex)
             {
