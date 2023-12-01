@@ -15,12 +15,12 @@ namespace API.ban_hoa.Controllers
         {
             _sanPhamBusiness = sanPhamBusiness;
         }
-        [Route("get-id/{id}")]
-        [HttpGet]
-        public SanPhamModel GetByID(int id)
-        {
-            return _sanPhamBusiness.GetByID(id);
-        }
+        //[Route("get-id/{id}")]
+        //[HttpGet]
+        //public SanPhamModel GetByID(int id)
+        //{
+        //    return _sanPhamBusiness.GetByID(id);
+        //}
         
         [Route("get-all")]
         [HttpGet]
@@ -47,12 +47,12 @@ namespace API.ban_hoa.Controllers
             return model;
         }
 
-        [Route("get-chuyenmuc")]
-        [HttpGet]
-        public List<SanPhamModel1> chuyenmuc_sp( int chuyenmuc)
-        {
-            return _sanPhamBusiness.chuyenmuc_sp(chuyenmuc);
-        }
+        //[Route("get-chuyenmuc")]
+        //[HttpGet]
+        //public List<SanPhamModel1> chuyenmuc_sp( int chuyenmuc)
+        //{
+        //    return _sanPhamBusiness.chuyenmuc_sp(chuyenmuc);
+        //}
         [Route("delete")]
         [HttpGet]
         public SanPhamModel Delete(int id)
